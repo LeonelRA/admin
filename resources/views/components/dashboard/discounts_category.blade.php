@@ -1,9 +1,13 @@
+@empty(!$categories)
+
 <div class="bg-white p-3 box-shadow rounded mt-4">
     <div>
         <h2>{{ __('Los mejores descuentos de las categorias') }}</h2>
     </div>
     <hr>
     <div class="row">
+
+    @if(!$categories->isEmpty())
 
         @foreach($categories->sortByDesc('discounts') as $category)
 
@@ -26,6 +30,12 @@
 
         @endforeach
 
+    @else
+
+        <div class="alert alert-warning">{{ __('Sin categorias') }}</div>
+
+    @endif
+    
     </div>
 </div>
 
@@ -35,6 +45,8 @@
     </div>
     <hr>
     <div class="row">
+
+    @if(!$categories->isEmpty())
 
         @foreach($categories->sortBy('discounts') as $category)
 
@@ -57,5 +69,13 @@
 
         @endforeach
 
+    @else
+
+        <div class="alert alert-warning">{{ __('Sin categorias') }}</div>
+
+    @endif
+
     </div>
 </div>
+
+@endempty
